@@ -1,77 +1,226 @@
-# Deployment and DevOps for MERN Applications
+# Full-Stack MERN Application
 
-This assignment focuses on deploying a full MERN stack application to production, implementing CI/CD pipelines, and setting up monitoring for your application.
+A modern full-stack application built with MongoDB, Express.js, React, and Node.js. Features a user management system with full CRUD operations.
 
-## Assignment Overview
+## 🚀 Tech Stack
 
-You will:
-1. Prepare your MERN application for production deployment
-2. Deploy the backend to a cloud platform
-3. Deploy the frontend to a static hosting service
-4. Set up CI/CD pipelines with GitHub Actions
-5. Implement monitoring and maintenance strategies
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **MongoDB** - Database
+- **Mongoose** - ODM for MongoDB
+- **CORS** - Cross-origin resource sharing
+- **Helmet** - Security middleware
+- **dotenv** - Environment variables
 
-## Getting Started
+### Frontend
+- **React** - UI library
+- **Vite** - Build tool and dev server
+- **Axios** - HTTP client
+- **CSS3** - Styling
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week7-Assignment.md` file
-4. Use the provided templates and configuration files as a starting point
+## 📁 Project Structure
 
-## Files Included
+```
+my-app/
+├── backend/
+│   ├── config/
+│   │   └── database.js
+│   ├── models/
+│   │   └── User.js
+│   ├── routes/
+│   │   └── users.js
+│   ├── middleware/
+│   │   └── errorHandler.js
+│   ├── .env
+│   ├── server.js
+│   ├── package.json
+│   └── render.yaml
+└── frontend/
+    ├── src/
+    │   ├── App.jsx
+    │   ├── App.css
+    │   └── main.jsx
+    ├── public/
+    ├── .env
+    ├── package.json
+    ├── vite.config.js
+    └── vercel.json
+```
 
-- `Week7-Assignment.md`: Detailed assignment instructions
-- `.github/workflows/`: GitHub Actions workflow templates
-- `deployment/`: Deployment configuration files and scripts
-- `.env.example`: Example environment variable templates
-- `monitoring/`: Monitoring configuration examples
+## 🛠️ Installation & Setup
 
-## Requirements
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB (local or Atlas)
+- Git
 
-- A completed MERN stack application from previous weeks
-- Accounts on the following services:
-  - GitHub
-  - MongoDB Atlas
-  - Render, Railway, or Heroku (for backend)
-  - Vercel, Netlify, or GitHub Pages (for frontend)
-- Basic understanding of CI/CD concepts
+### 1. Clone the Repository
+```bash
+git clone https://github.com/PLP-MERN-Stack-Development/deployment-and-devops-essentials-Deeja-ish.git
+cd deployment-and-devops-essentials-Deeja-ish
+```
 
-## Deployment Platforms
+### 2. Backend Setup
+```bash
+# Navigate to backend directory
+cd backend
 
-### Backend Deployment Options
-- **Render**: Easy to use, free tier available
-- **Railway**: Developer-friendly, generous free tier
-- **Heroku**: Well-established, extensive documentation
+# Install dependencies
+npm install
 
-### Frontend Deployment Options
-- **Vercel**: Optimized for React apps, easy integration
-- **Netlify**: Great for static sites, good CI/CD
-- **GitHub Pages**: Free, integrated with GitHub
+# Create environment file
+cp .env.example .env
+```
 
-## CI/CD Pipeline
+Edit `.env` file:
+```env
+MONGODB_URI=your_mongodb_connection_string
+PORT=5000
+FRONTEND_URL=https://deployment-and-devops-5li4.vercel.app/
+```
 
-The assignment includes templates for setting up GitHub Actions workflows:
-- `frontend-ci.yml`: Tests and builds the React application
-- `backend-ci.yml`: Tests the Express.js backend
-- `frontend-cd.yml`: Deploys the frontend to your chosen platform
-- `backend-cd.yml`: Deploys the backend to your chosen platform
+### 3. Frontend Setup
+```bash
+# Navigate to frontend directory
+cd ../frontend
 
-## Submission
+# Install dependencies
+npm install
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+# Create environment file
+cp .env.example .env
+```
 
-1. Complete all deployment tasks
-2. Set up CI/CD pipelines with GitHub Actions
-3. Deploy both frontend and backend to production
-4. Document your deployment process in the README.md
-5. Include screenshots of your CI/CD pipeline in action
-6. Add URLs to your deployed applications
+Edit `.env` file:
+```env
+VITE_API_BASE=https://deployment-and-devops-essentials-deeja.onrender.com
+```
 
-## Resources
+## 🚀 Running the Application
 
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com/)
-- [Render Documentation](https://render.com/docs)
-- [Railway Documentation](https://docs.railway.app/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Netlify Documentation](https://docs.netlify.com/) 
+### Development Mode
+
+#### Start Backend Server
+```bash
+cd backend
+npm run dev
+```
+Backend runs on: `https://deployment-and-devops-essentials-deeja.onrender.com`
+
+#### Start Frontend Development Server
+```bash
+cd frontend
+npm run dev
+```
+Frontend runs on: `https://deployment-and-devops-5li4.vercel.app/`
+
+### Production Build
+```bash
+# Backend
+cd backend
+npm start
+
+# Frontend
+cd frontend
+npm run build
+npm run preview
+```
+
+## 🌐 API Endpoints
+
+### Users
+- `GET /api/users` - Get all users
+- `POST /api/users` - Create a new user
+- `GET /api/users/:id` - Get user by ID
+- `PUT /api/users/:id` - Update user
+- `DELETE /api/users/:id` - Delete user
+
+### Health Check
+- `GET /api/health` - Server status
+
+## 📦 Deployment
+
+### Backend on Render
+1. Push code to GitHub
+2. Connect repository to Render
+3. Set environment variables in Render dashboard:
+   - `MONGODB_URI`
+   - `https://deployment-and-devops-5li4.vercel.app/` 
+4. Deploy automatically
+
+### Frontend on Vercel
+1. Push code to GitHub
+2. Connect repository to Vercel
+3. Set environment variable:
+   - `https://deployment-and-devops-essentials-deeja.onrender.com` 
+4. Deploy automatically
+
+### MongoDB Setup
+1. Create MongoDB Atlas cluster
+2. Get connection string
+3. Add to environment variables
+4. Configure network access to allow Render IPs
+
+## 🔧 Environment Variables
+
+### Backend (.env)
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dbname
+PORT=5000
+FRONTEND_URL= https://deployment-and-devops-5li4.vercel.app/
+```
+
+### Frontend (.env)
+```env
+VITE_API_BASE=https://deployment-and-devops-essentials-deeja.onrender.com
+```
+
+## 🎯 Features
+
+- ✅ Create, read, update, delete users
+- ✅ Responsive design
+- ✅ Real-time form validation
+- ✅ Error handling
+- ✅ RESTful API
+- ✅ Modern React hooks
+- ✅ MongoDB integration
+
+## 📝 Available Scripts
+
+### Backend
+- `npm start` - Start production server
+- `npm run dev` - Start development server with nodemon
+
+### Frontend
+- `npm run dev` - Start Vite development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+
+## 🔍 Troubleshooting
+
+### Common Issues
+
+1. **CORS Errors**
+   - Ensure `FRONTEND_URL` environment variable is set correctly
+   - Check that backend CORS configuration includes frontend URL
+
+2. **MongoDB Connection Issues**
+   - Verify connection string in environment variables
+   - Check network access in MongoDB Atlas
+
+3. **Environment Variables Not Loading**
+   - Restart development servers after adding new environment variables
+   - Ensure `.env` files are in correct directories
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
